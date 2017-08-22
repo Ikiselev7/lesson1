@@ -5,25 +5,26 @@ package ru.kiselev.lesson1;
  */
 public class Division extends BinaryOperation {
 
-    public Division(String... operands) throws NumberFormatException, OperandException {
-        super(operands);
+    @Override
+    public boolean isCorrect(String... operands) throws OperandException, IllegalArgumentException {
+        super.isCorrect(operands);
+        if(secondOperand==0){
+            throw new IllegalArgumentException("Oh my God, you divided by zero!\n"+massage);
+        }
+        return true;
     }
 
     @Override
-    public int calculate() throws IllegalArgumentException {
-
-        if(secondOperand==0){
-            throw new IllegalArgumentException("Oh my God, you divide by zero!");
-        }
-
-
+    public int calculate()  {
         return firstOperand/secondOperand;
     }
 
     public static void main(String[] args) {
         try {
-            Division division = new Division(args);
-            System.out.println(division.calculate());
+            Division division = new Division();
+            if(division.isCorrect(args)){
+                System.out.println(division.calculate());
+            }
         } catch (NumberFormatException e){
             System.out.println("Arguments include not integer");
         } catch(IllegalArgumentException e){

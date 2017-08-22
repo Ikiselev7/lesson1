@@ -4,9 +4,6 @@ package ru.kiselev.lesson1;
  * Created by kiselev_ia on 22.08.2017.
  */
 public class Multiplication extends BinaryOperation {
-    public Multiplication(String... operands) throws NumberFormatException, OperandException {
-        super(operands);
-    }
 
     @Override
     public int calculate() {
@@ -15,8 +12,10 @@ public class Multiplication extends BinaryOperation {
 
     public static void main(String[] args) {
         try {
-            Multiplication multp = new Multiplication(args);
-            System.out.println(multp.calculate());
+            Multiplication multp = new Multiplication();
+            if(multp.isCorrect(args)){
+                System.out.println(multp.calculate());
+            }
         } catch (NumberFormatException e){
             System.out.println("Arguments include not integer");
         }catch (OperandException e) {

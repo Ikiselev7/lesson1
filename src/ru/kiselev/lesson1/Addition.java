@@ -5,10 +5,6 @@ package ru.kiselev.lesson1;
  */
 public class Addition extends BinaryOperation {
 
-    public Addition(String... operands) throws NumberFormatException, OperandException {
-        super(operands);
-    }
-
     @Override
     public int calculate() {
         return firstOperand+secondOperand;
@@ -16,8 +12,10 @@ public class Addition extends BinaryOperation {
 
     public static void main(String[] args) {
         try {
-            Addition add = new Addition(args);
-            System.out.println(add.calculate());
+            Addition add = new Addition();
+            if(add.isCorrect(args)){
+                System.out.println(add.calculate());
+            }
         } catch (NumberFormatException e){
             System.out.println("Arguments include not integer");
         }catch (OperandException e) {
